@@ -1,4 +1,3 @@
-ti, PEdro, 1200.00, gerente, 200.00 
-juridico, albino, 1200.00, gerente, 299.00 
-ti, pedro, 300.00, analista, 200.00 
-vendas, vitao, 400.00, gerente, 299.00 
+ti, marcos, 1200.00, analista, 200.00
+tr, pedro, 1200.00, gerente, 120.00
+ti, marcos, 3200.00, gerente, 200.00
