@@ -47,10 +47,10 @@ lista = ler_funcionarios()
 for funcionarios in lista: 
     print(f"{funcionarios}\n")
 
-def somase(inter_soma, criterio, soma):
+def somase(inter, criterio, soma):
     somar = 0
 
-    for funcionario in inter_soma:
+    for funcionario in inter:
         if funcionario == criterio:
             soma += lista[5]
             print(soma)
