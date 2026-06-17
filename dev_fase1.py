@@ -5,11 +5,6 @@ oficina_geral = []
 def cadastrar_ordem_servico():
     print("\n--- NOVA ORDEM DE SERVIÇO ---")
     # Capturando os dados iniciais do mundo real
-    global cliente
-    global modelo_carro
-    global quilometragem
-    global ano_carro
-    global necessita_revisão_completa
     cliente = input("Nome do cliente: ")
     modelo_carro = input("Modelo do veículo: ")
 
@@ -41,43 +36,41 @@ def cadastrar_ordem_servico():
     else:
         print("\n Status: Manutenção de rotina.")
     
+    lista_pecas = []
+    total_orcamento = 0.00
+    print("\n--- LANÇAMENTO DE PEÇAS E SERVIÇOS ---")
 
-lista_pecas = []
-total_orcamento = 0.00
-
-print("\n--- LANÇAMENTO DE PEÇAS E SERVIÇOS ---")
-
-while True:
-    peca = input("Nome da peça/serviço (ou 'fim' para encerrar): ").strip()
-    if peca.lower() == "fim":
-        break # Quebra o laço e envia o fluxo para o fechamento
-    try:
-        preco = float(input(f"Preço de '{peca}': R$ "))
-        if preco < 0:
-            print("O preço não pode ser negativo")
-            continue
-        lista_pecas.append(peca)
-        total_orcamento += preco
-    except ValueError:
-        print("Erro: Preço invalido! Item desconsiderado. Tente novamente.")
+    while True:
+        peca = input("Nome da peça/serviço (ou 'fim' para encerrar): ").strip()
+        if peca.lower() == "fim":
+            break # Quebra o laço e envia o fluxo para o fechamento
+        try:
+            preco = float(input(f"Preço de '{peca}': R$ "))
+            if preco < 0:
+                print("O preço não pode ser negativo")
+                continue
+            lista_pecas.append(peca)
+            total_orcamento += preco
+        except ValueError:
+            print("Erro: Preço invalido! Item desconsiderado. Tente novamente.")
 
 
-#Estruturação de Dados
-ordem_servico = {
-    "cliente": cliente, 
-    "veiculo": modelo_carro,
-    "ano": ano_carro,
-    "km": quilometragem,
-    "alerta_revisao": necessita_revisao_completa,
-    "itens": lista_pecas,
-    "total": total_orcamento,
-    "status": "Em aberto",
+    #Estruturação de Dados
+    ordem_servico = {
+        "cliente": cliente, 
+        "veiculo": modelo_carro,
+        "ano": ano_carro,
+        "km": quilometragem,
+        "alerta_revisao": necessita_revisao_completa,
+        "itens": lista_pecas,
+        "total": total_orcamento,
+        "status": "Em aberto",
 
-}
+    }
 
-# Conexão Final: Adicionamos o dicionario da O.S. na nossa global (banco de dados)
-oficina_geral.append(ordem_servico)
-print(f"\n Ordem de serviços de {cliente} gerada com sucesso")
+    # Conexão Final: Adicionamos o dicionario da O.S. na nossa global (banco de dados)
+    oficina_geral.append(ordem_servico)
+    print(f"\n Ordem de serviços de {cliente} gerada com sucesso")
 
 #Esse função varre a lista global e exibe os dados estruturados de cada dicionário
 
